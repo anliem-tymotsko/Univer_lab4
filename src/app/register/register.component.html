@@ -1,0 +1,28 @@
+
+<section>
+  <div class="rt-container">
+    <div class="col-rt-12">
+
+      <div class="simpleLogin">
+        <form [formGroup]="registerForm" (ngSubmit)="onFormSubmit(registerForm.value)">
+          <legend style="display: block"><span>REGISTRATION</span><button type="button" class="btn btn-outline-light float-right" routerLink="/login">SIGN IN</button></legend>
+          <fieldset>
+            <input id="fname" placeholder="First name" formControlName="firstname" type="text">
+            <input id="lname" placeholder="Last name" formControlName="lastname" type="text">
+            <input id="name" placeholder="Username" formControlName="email" type="text">
+            <input id="pass" placeholder="Password" formControlName="password" type="password">
+
+
+
+            <input id="submit" type="submit" value="Sign Up">
+
+           <!-- <select id="country" formControlName="country">
+            <option *ngFor="let s of status">{{ s }}</option>
+          </select>-->
+          </fieldset>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</section>

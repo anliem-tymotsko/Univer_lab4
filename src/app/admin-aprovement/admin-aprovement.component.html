@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+<div class="site">
+
+  <nav class="nav">
+    <div class="nav__title">ADMIN PAGE</div>
+    <ul class="nav__list">
+      <li class="nav__item"><a class="nav_text" href="admin/teacher/create">Create teacher</a></li>
+      <li class="nav__item"><a class="nav_text" href="admin/student/create">Create student</a></li>
+      <li class="nav__item"><a class="nav_text" href="admin/group/create">Create group</a></li>
+    </ul>
+  </nav>
+</div>
+
+
+<table class="ui celled table" style="margin-top: 60px;">
+  <h4 *ngIf="!unApprovedUsers || unApprovedUsers.length === 0" style="margin-top: 20px; margin-left: 30%;">There aren`t
+    unapproved users</h4>
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Role</th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let user of unApprovedUsers; let i = index">
+    <td>{{user.firstname}} {{user.lastname}}</td>
+    <td>{{user.email}}</td>
+    <td>{{user.role}}</td>
+    <button type="button" class="btn btn-outline-success" (click)="confirmUser(user._id)">Confirm</button>
+    <button  type="button" class="btn btn-outline-danger" (click)="rejectUser(user._id)">Reject</button>
+  </tr>
+  </tbody>
+</table>
+</body>
+</html>

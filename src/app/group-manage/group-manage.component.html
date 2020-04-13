@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+<div class="site">
+  <nav class="nav">
+    <div class="nav__title">TEACHER PAGE / marks</div>
+
+    <ul class="nav__list">
+      <li class="nav__item"><a class="nav_text" href="register">Services</a></li>
+      <li class="nav__item">About Us</li>
+      <li class="nav__item">Blog</li>
+    </ul>
+  </nav>
+
+  <table class="ui celled table" style="margin-top: 60px;">
+    <h4 *ngIf="!group.students || group.students.length === 0" style="margin-top: 20px; margin-left: 30%;">There aren`t
+      students in group</h4>
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th>Lastname</th>
+      <th>email</th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let student of group.students; let i = index">
+      <td>{{student.firstname}} </td>
+      <td>{{student.lastname}}</td>
+      <td>{{student.email}}</td>
+      <select class="custom-select" id="inputGroupSelect" aria-label="Example select with button addon"
+              style="width: 200px; margin-left: 200px" (change)="onChange($event.target.value, student)">
+        <option selected>Choose...</option>
+        <option *ngFor="let mark of  [1,2,3,4,5]" value="{{mark}}"> {{mark}} </option>
+      </select>
+    </tr>
+    </tbody>
+  </table>
+</div>
+</body>
+</html>

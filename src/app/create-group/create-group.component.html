@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+<div class="site">
+  <nav class="nav">
+    <div class="nav__title">ADMIN PAGE / create group</div>
+
+    <ul class="nav__list">
+      <li class="nav__item"><a class="nav_text" href="admin/teacher/create">Create teacher</a></li>
+      <li class="nav__item"><a class="nav_text" href="admin/student/create">Create student</a></li>
+      <li class="nav__item"><a class="nav_text" href="admin/approve">HOME</a></li>
+    </ul>
+  </nav>
+  <form [formGroup]="createGroupForm" (ngSubmit)="createGroup(createGroupForm.value)" class="ui form">
+    <div class="createForm">
+      <br>
+      <div class="input-group" style="width: 700px; margin-left: 200px">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Number and name of group</span>
+        </div>
+        <input type="text" aria-label="Num of group" class="form-control" formControlName="numGroup" placeholder="343">
+        <input type="text" aria-label="name" class="form-control" formControlName="nameGroup"
+               placeholder="Software Engineering">
+      </div>
+
+      <br>
+      <p style="width: 700px; margin-left: 200px; font-family: 'Arial Black'">Сurator</p>
+      <select class="custom-select" id="inputGroupSelect03" aria-label="Example select with button addon"
+              style="width: 700px; margin-left: 200px" formControlName="curator">
+        <option selected>Choose...</option>
+        <option *ngFor="let teacher of teachers">{{teacher.firstname}}</option>
+      </select>
+      <br>
+      <br>
+      <p style="width: 700px; margin-left: 200px; font-family: 'Arial Black'">Students</p>
+
+      <select class="custom-select" id="inputGroupSelect" aria-label="Example select with button addon"
+              style="width: 700px; margin-left: 200px" (change)="onChange($event.target.value)">
+        <option selected>Choose...</option>
+        <option *ngFor="let student of students ;let i = index"
+                value="{{student._id}}">{{student.firstname}} {{student.lastname}} | {{student.email}}</option>
+      </select>
+      <br>
+      <br>
+      <p style="width: 700px; margin-left: 200px; font-family: 'Arial Black'">Subjects</p>
+
+      <select class="custom-select"  aria-label="Example select with button addon"
+              style="width: 700px; margin-left: 200px" (change)="onChangeSub($event.target.value)">
+        <option selected>Choose...</option>
+        <option *ngFor="let subject of subjects ;let i = index" value="{{subject._id}}"> {{subject.name}} </option>
+      </select>
+    </div>
+    <br>
+    <button type="submit" class="btn btn-outline-success" style="margin-left: 859px"> Create group</button>
+    <tbody *ngIf=" studentsInGroup && studentsInGroup.length != 0">
+
+    <table class="ui celled table" style="margin-top: 60px; margin-left: 200px;">
+      <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Role</th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let stud of studentsInGroup; let i = index">
+        <td>{{stud.firstname}} {{stud.lastname}}</td>
+        <td>{{stud.email}}</td>
+        <td>{{stud.role}}</td>
+        <button type="button" class="btn btn-outline-danger" (click)="remove(stud)"> X</button>
+
+      </tr>
+      </tbody>
+    </table>
+    </tbody>
+  </form>
+</div>
+</body>
+</html>

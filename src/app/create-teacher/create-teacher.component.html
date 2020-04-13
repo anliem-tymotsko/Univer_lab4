@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+<div class="site">
+  <nav class="nav">
+    <div class="nav__title">ADMIN PAGE / create teacher</div>
+
+    <ul class="nav__list">
+      <li class="nav__item"><a class="nav_text" href="admin/teacher/group">Create group</a></li>
+      <li class="nav__item"><a class="nav_text" href="admin/student/create">Create student</a></li>
+      <li class="nav__item"><a class="nav_text" href="admin/approve">HOME</a></li>
+    </ul>
+  </nav>
+  <form [formGroup]="createTeacherForm" (ngSubmit)="createTeacher(createTeacherForm.value)" class="ui form">
+    <div class="createForm">
+      <br>
+      <div class="input-group" style="width: 700px; margin-left: 200px">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Name and Lastname </span>
+        </div>
+        <input type="text" aria-label="firstname" class="form-control" formControlName="firstname" placeholder="Firstname">
+        <input type="text" aria-label="lastname" class="form-control" formControlName="lastname" placeholder="Lastname">
+      </div>
+      <br>
+      <br>
+      <div class="input-group" style="width: 700px; margin-left: 200px">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Email</span>
+        </div>
+        <input type="email" aria-label="email" class="form-control" formControlName="email"
+               placeholder="email@email.com">
+      </div>
+      <br>
+
+      <br>
+      <p style="width: 700px; margin-left: 200px; font-family: 'Arial Black'">Subjects</p>
+
+      <select class="custom-select" id="inputGroupSelect" aria-label="Example select with button addon"
+              style="width: 700px; margin-left: 200px" (change)="onChange($event.target.value)">
+        <option selected>Choose...</option>
+        <option *ngFor="let subject of subjects ;let i = index" value="{{subject._id}}"> {{subject.name}} </option>
+      </select>
+    </div>
+    <br>
+    <button type="submit" class="btn btn-outline-success" style="margin-left: 859px"> save teacher</button>
+    <tbody *ngIf=" addedSubjects && addedSubjects.length != 0">
+
+     <table class="ui celled table" style="margin-top: 20px; margin-left: 400px;">
+       <thead>
+       <tr>
+         <th>Subject</th>
+       </tr>
+       </thead>
+       <tbody>
+       <tr *ngFor="let sub of addedSubjects; let i = index">
+         <td>{{sub.name}}</td>
+         <button type="button" class="btn btn-outline-danger" (click)="remove(sub)"> X</button>
+
+       </tr>
+       </tbody>
+     </table>
+     </tbody>
+  </form>
+</div>
+</body>
+</html>

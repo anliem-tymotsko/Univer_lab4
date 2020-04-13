@@ -1,0 +1,22 @@
+<section>
+  <div class="rt-container">
+    <div class="col-rt-12">
+
+      <div class="simpleLogin">
+        <form [formGroup]="loginForm" (ngSubmit)="onFormSubmit(loginForm.value)">
+          <legend style="display: block"><span>LOGIN</span><button type="button" class="btn btn-outline-light float-right" routerLink="/register">SIGN UP</button></legend>
+
+          <fieldset>
+
+            <input id="name" placeholder="Username" type="text"  formControlName="email">
+            <input id="pass"  placeholder="Password" type="password" formControlName="password" >
+            <input id="submit" type="submit" value="Log in">
+
+          </fieldset>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</section>
+

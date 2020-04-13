@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+<div class="site">
+  <nav class="nav">
+    <div class="nav__title">TEACHER PAGE | {{user.firstname}} {{user.lastname}}</div>
+
+    <ul class="nav__list">
+      <li class="nav__item"><a class="nav_text" href="register">Services</a></li>
+      <li class="nav__item">About Us</li>
+      <li class="nav__item">Blog</li>
+    </ul>
+  </nav>
+
+
+  <h1 style=" margin-left: 400px; margin-top: 20px">Your subjects</h1>
+
+
+  <div class="parent" style="display: flex; margin-top:50px ">
+    <div class="cardbg-info mb-3 "
+         style="width: 15rem; width-min: 19rem; margin-left: 50px; height: 100px ; max-height: 50px"
+         *ngFor="let sub of teachersSubjects; let i = index">
+      <div class="card-body" style="background: #B3E226">
+        <h5 class="card-title" style=" text-align: center ">{{sub.name}}</h5>
+        <button class="btn btn-outline-secondary" (click)="showGroups(sub._id)" style="margin-left: 40px"> show groups</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+</body>
+</html>
